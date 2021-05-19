@@ -30,6 +30,9 @@ helm install cilium cilium/cilium --version 1.9.7 --namespace kube-system -f con
 ## Setup Monitoring stack (Grafana/Prometheus)
 `apply -f monitoring.yml`
 
+## Setup demo app
+`kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/microservices-demo/master/release/kubernetes-manifests.yaml`
+
 ## Apply Cilium Network Policies
 For HTTP
 `kubectl apply -f http-policy.yml`
