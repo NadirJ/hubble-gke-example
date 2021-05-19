@@ -4,6 +4,7 @@
 
 
 `gcloud config set project <Your GCP Project>`
+
 `gcloud config set compute/zone us-east4-b`
 
 `gcloud container clusters get-credentials onlineboutique`
