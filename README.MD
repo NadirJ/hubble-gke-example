@@ -11,7 +11,7 @@
 
 `kubectl get pods -A`
 
-##Install and configure Helm
+## Install and configure Helm
 `brew install helm`
 
 `helm repo add cilium https://helm.cilium.io/`
