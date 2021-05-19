@@ -1,0 +1,31 @@
+hubble:
+  enabled: true
+  relay:
+    enabled: true
+  ui:
+    enabled: true
+  metrics:
+    enabled:
+    - dns:query;ignoreAAAA:sourceContext=identity;destinationContext=identity
+    - drop:sourceContext=identity;destinationContext=identity
+    - tcp:sourceContext=identity;destinationContext=identity
+    - flow:sourceContext=identity;destinationContext=identity
+    - port-distribution:sourceContext=identity;destinationContext=identity
+    - icmp:sourceContext=identity;destinationContext=identity
+    - http:sourceContext=identity;destinationContext=identity
+operator:
+  prometheus:
+    enabled: true
+prometheus:
+  enabled: true
+nodeinit:
+  enabled: true
+  reconfigureKubelet: true
+  removeCbrBridge: true
+cni:
+  binPath: /home/kubernetes/bin
+gke:
+  enabled: true
+ipam:
+  mode: kubernetes
+nativeRoutingCIDR: 10.16.0.0/14
