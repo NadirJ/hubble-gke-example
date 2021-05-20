@@ -1,11 +1,19 @@
 # How to Setup Huble with Prometheus
 
+## Create a GKE cluster
+
+`export PROJECT_ID=<Your GCP Project>`
+`export ZONE=<GCP Zone ex us-east 4>`
+
+
+`gcloud config set project $PROJECT_ID`
+`gcloud config set compute/zone $ZONE`
+
+`gcloud container clusters create onlineboutique \                                                             
+    --project=${PROJECT_ID} --zone=${ZONE} \
+    --machine-type=e2-standard-2 --num-nodes=4 --image-type=COS`
+
 ## Setup kubectl to connect to GKE
-
-
-`gcloud config set project <Your GCP Project>`
-
-`gcloud config set compute/zone us-east4-b`
 
 `gcloud container clusters get-credentials onlineboutique`
 
@@ -16,6 +24,10 @@
 
 `helm repo add cilium https://helm.cilium.io/`
 
+## Configure and Install Cilium
+
+### Configure CIDR
+
 Determine the native CIDR
 Run the following command
  `gcloud container clusters describe onlineboutique --format 'value(clusterIpv4Cidr)'`
@@ -24,7 +36,7 @@ then update config.yml in this repo
 nativeRoutingCIDR: <the value of command above>
 
 
-## Install Cilium
+### Install Cilium
 helm install cilium cilium/cilium --version 1.9.7 --namespace kube-system -f config.yml
 
 ## Setup Monitoring stack (Grafana/Prometheus)
